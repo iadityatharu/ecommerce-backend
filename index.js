@@ -8,6 +8,7 @@ const app = express();
 app.use(cors());
 
 const PORT = process.env.PORT | 5454;
+console.log(PORT);
 connection();
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
