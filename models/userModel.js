@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-import { required } from "nodemon/lib/config";
-import { Unique } from "typeorm";
 
 const User = mongoose.Schema(
   {
