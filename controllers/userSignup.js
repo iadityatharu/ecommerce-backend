@@ -6,10 +6,16 @@ export const userSignin = async (req, res) => {
   if (!email || !name || !password) {
     throw new expressError(400, "All fields are required");
   }
-  const hashPassword = bcrypt.hash(password, 10);
+  const salt = bcrypt.genSalt(10);
+  const hashPassword = await bcrypt.hashSync(password, salt);
+  if (!hashPassword) {
+    throw new expressError(400, "Hash password required");
+  }
   const userData = new User({
     name,
     email,
-    password,
+    password: hashPassword,
   });
+  await userData.save();
+  return { status: 201, message: "new user created" };
 };
