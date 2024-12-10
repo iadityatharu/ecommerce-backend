@@ -1,5 +1,5 @@
 import User from "../models/user.js";
-import { expressError } from "../utils/expressError.js";
+import expressError from "../utils/expressError.js";
 import bcrypt from "bcryptjs";
 
 export const userSignup = async (req, res) => {
