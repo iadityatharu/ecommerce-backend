@@ -4,12 +4,15 @@ import bcrypt from "bcryptjs";
 
 export const userSignup = async (req, res) => {
   const { email, password, name } = req.body;
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
+    throw new expressError(409, "User already exists");
+  }
   // console.log(req.body);
   if (!email || !name || !password) {
     throw new expressError(400, "All fields are required");
   }
-  const salt = await bcrypt.genSalt(10);
-  const hashPassword = bcrypt.hashSync(password, salt);
+  const hashPassword = await bcrypt.hash(password, 10);
   if (!hashPassword) {
     throw new expressError(400, "Hash password required");
   }
