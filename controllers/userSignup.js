@@ -1,7 +1,8 @@
 import User from "../models/user.js";
 import { expressError } from "../utils/expressError.js";
 import bcrypt from "bcryptjs";
-export const userSignin = async (req, res) => {
+
+export const userSignup = async (req, res) => {
   const { email, password, name } = req.body;
   if (!email || !name || !password) {
     throw new expressError(400, "All fields are required");
