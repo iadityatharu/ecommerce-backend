@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 
 export const userSignup = async (req, res) => {
   const { email, password, name } = req.body;
+  console.log(req.body);
   if (!email || !name || !password) {
     throw new expressError(400, "All fields are required");
   }
