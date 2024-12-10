@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 
 export const userSignup = async (req, res) => {
   const { email, password, name } = req.body;
-  console.log(req.body);
+  // console.log(req.body);
   if (!email || !name || !password) {
     throw new expressError(400, "All fields are required");
   }
@@ -19,5 +19,5 @@ export const userSignup = async (req, res) => {
     password: hashPassword,
   });
   await userData.save();
-  return res.status(201).json("Signup successful");
+  return res.status(201).json({ message: "Signup successful" });
 };
