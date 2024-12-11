@@ -22,5 +22,5 @@ export const userSignup = async (req, res) => {
     password: hashPassword,
   });
   await userData.save();
-  return res.status(201).json({ message: "Signup successful" });
+  return res.status(201).json({ status: true, message: "Signup successful" });
 };
