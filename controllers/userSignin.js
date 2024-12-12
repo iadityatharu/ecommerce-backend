@@ -1,6 +1,7 @@
 import User from "../models/user.js";
 import expressError from "../utils/expressError.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 export const userSignin = async (req, res) => {
   const { email, password } = req.body;
