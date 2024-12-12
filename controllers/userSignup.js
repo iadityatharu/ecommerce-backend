@@ -8,7 +8,6 @@ export const userSignup = async (req, res) => {
   if (existingUser) {
     throw new expressError(409, true, "User already exists");
   }
-  // console.log(req.body);
   if (!email || !name || !password || !role) {
     throw new expressError(400, true, "All fields are required");
   }
