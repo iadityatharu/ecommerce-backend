@@ -12,5 +12,7 @@ export const userSignin = async (req, res) => {
     throw new expressError(404, true, "User not found!");
   }
   const checkPassword = await bcrypt.compare(password, user.password);
-  console.log(checkPassword);
+  if (checkPassword === true) {
+    return res.status(200).json({ status: true, message: "Login successful" });
+  }
 };
