@@ -12,7 +12,8 @@ export const userSignin = async (req, res) => {
     throw new expressError(404, true, "User not found!");
   }
   const checkPassword = await bcrypt.compare(password, user.password);
-  if (checkPassword === true) {
-    return res.status(200).json({ status: true, message: "Login successful" });
+  if (checkPassword !== true) {
+    throw new expressError(401, true, "Invalid credentials");
   }
+  return res.status(200).json({ status: true, message: "Login successful" });
 };

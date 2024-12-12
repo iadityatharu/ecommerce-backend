@@ -13,7 +13,6 @@ app.use(cors());
 
 // Routes
 app.use("/api/v1", router);
-
 // Handle 404 errors
 app.all("*", (req, res, next) => {
   next(new expressError(404, "Page Not Found"));
