@@ -6,15 +6,15 @@ export const userSignup = async (req, res) => {
   const { email, password, name } = req.body;
   const existingUser = await User.findOne({ email });
   if (existingUser) {
-    throw new expressError(409, "User already exists");
+    throw new expressError(409, true, "User already exists");
   }
   // console.log(req.body);
   if (!email || !name || !password) {
-    throw new expressError(400, "All fields are required");
+    throw new expressError(400, true, "All fields are required");
   }
   const hashPassword = await bcrypt.hash(password, 10);
   if (!hashPassword) {
-    throw new expressError(400, "Hash password required");
+    throw new expressError(400, true, "Hash password required");
   }
   const userData = new User({
     name,

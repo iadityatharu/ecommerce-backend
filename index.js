@@ -22,9 +22,14 @@ app.all("*", (req, res, next) => {
 // Error handler middleware
 app.use((err, req, res, next) => {
   const status = err.status || 500;
+  const error = err.error || false;
   const message = err.message || "Internal Server Error";
   // console.error(`Error: ${message}, Status Code: ${status}`, err);
-  res.status(status).json({ message });
+  res.status(status).json({
+    status,
+    error: true,
+    message,
+  });
 });
 
 const PORT = process.env.PORT || 5454;
