@@ -26,7 +26,7 @@ export const userSignin = async (req, res) => {
   });
   const tokenOption = {
     httpOnly: true,
-    secure: false,
+    secure: true,
   };
   return res
     .cookie("token", token, tokenOption)
