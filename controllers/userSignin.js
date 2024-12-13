@@ -22,7 +22,7 @@ export const userSignin = async (req, res) => {
   };
 
   const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET, {
-    expiresIn: 5 * 60 * 1000,
+    expiresIn: 60 * 60 * 1000,
   });
   const tokenOption = {
     httpOnly: true,
