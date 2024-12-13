@@ -32,7 +32,7 @@ app.use((err, req, res, next) => {
   // console.error(`Error: ${message}, Status Code: ${status}`, err);
   res.status(status).json({
     status,
-    error: true,
+    error,
     message,
   });
 });
