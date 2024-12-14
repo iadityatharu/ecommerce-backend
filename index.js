@@ -15,6 +15,7 @@ app.use(
     credentials: true,
   })
 );
+//use middleware
 app.use(express.json());
 app.use(cookieParser());
 
