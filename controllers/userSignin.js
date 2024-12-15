@@ -8,7 +8,7 @@ export const userSignin = async (req, res) => {
   if (!email || !password) {
     throw new expressError(401, true, "Invalid credentials");
   }
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email }).select("_id role");
   if (!user) {
     throw new expressError(404, true, "User not found!");
   }
