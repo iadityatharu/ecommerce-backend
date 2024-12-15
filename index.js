@@ -29,7 +29,7 @@ const rateLimit = limitter({
     });
   },
 });
-app.use("api/v1", rateLimit);
+app.use("/api/v1", rateLimit);
 // Routes
 app.use("/api/v1", router);
 // Handle 404 errors
