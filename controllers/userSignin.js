@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 export const userSignin = async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    throw new expressError(404, true, "Invalid credentials");
+    throw new expressError(401, true, "Invalid credentials");
   }
   const user = await User.findOne({ email });
   if (!user) {
@@ -22,7 +22,7 @@ export const userSignin = async (req, res) => {
   };
 
   const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET, {
-    expiresIn: 60 * 60 * 1000,
+    expiresIn: "1h",
   });
   const tokenOption = {
     httpOnly: true,
