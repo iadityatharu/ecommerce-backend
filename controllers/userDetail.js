@@ -6,4 +6,8 @@ export const userDetail = async (req, res) => {
     throw new expressError(404, true, "User not found");
   }
   const user = await User.findById({ userId });
+  if(!user)
+  {
+    throw new expressError(404, true, "User not found");
+  }
 };
