@@ -3,7 +3,6 @@ import expressError from "../utils/expressError.js";
 export const auth = async (req, res, next) => {
   try {
     const token = req.cookies.token;
-    console.log(token);
     if (!token) {
       throw new expressError(401, true, "Authentication token is expired");
     }
