@@ -22,7 +22,7 @@ app.use(cookieParser());
 
 const rateLimit = limitter({
   windowMs: 1 * 60 * 1000, // 15 minutes
-  max: 3, // Limit 100 requests per IP
+  max: 100, // Limit 100 requests per IP
   handler: (req, res) => {
     res.status(429).json({
       message: `Too many requests from IP: ${req.ip}`,
