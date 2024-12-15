@@ -5,7 +5,9 @@ export const userDetail = async (req, res) => {
   if (!_id) {
     throw new expressError(404, true, "User not found");
   }
-  const user = await User.findById({ _id });
+  const user = await User.findById({ _id }).select(
+    "-_id -password -createdAt -updatedAt"
+  );
   if (!user) {
     throw new expressError(404, true, "User not found");
   }
