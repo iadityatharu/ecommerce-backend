@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import limitter from "express-rate-limit";
 import { connection } from "./config/db.js";
 import router from "./routes/index.js";
 import expressError from "./utils/expressError.js";
@@ -19,6 +20,16 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
+const rateLimit = limitter({
+  windowMs: 1 * 60 * 1000, // 15 minutes
+  max: 3, // Limit 100 requests per IP
+  handler: (req, res) => {
+    res.status(429).json({
+      message: `Too many requests from IP: ${req.ip}`,
+    });
+  },
+});
+app.use("api/v1", rateLimit);
 // Routes
 app.use("/api/v1", router);
 // Handle 404 errors
