@@ -31,7 +31,7 @@ const rateLimit = limitter({
 });
 app.use("/api/v1", rateLimit);
 // Routes
-app.use("/api/v1", router);
+
 // Handle 404 errors
 app.all("*", (req, res, next) => {
   next(new expressError(404, true, "Page Not Found"));
