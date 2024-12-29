@@ -9,7 +9,13 @@ import expressError from "./utils/expressError.js";
 
 dotenv.config();
 const app = express();
-
+//configure the frontend link
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+  })
+);
 //use middleware
 app.use(express.json());
 app.use(cookieParser());
