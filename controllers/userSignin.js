@@ -24,10 +24,7 @@ export const userSignin = async (req, res) => {
   const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET, {
     expiresIn: "1h",
   });
-  const tokenOption = {
-    httpOnly: true,
-    secure: true,
-  };
+  
   return res
     .cookie("token", token, tokenOption)
     .status(200)
