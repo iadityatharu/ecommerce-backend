@@ -15,12 +15,7 @@ export const userSignup = async (req, res) => {
   if (!hashPassword) {
     throw new expressError(400, true, "Hash password required");
   }
-  const userData = new User({
-    name,
-    email,
-    role,
-    password: hashPassword,
-  });
+
   await userData.save();
   return res.status(201).json({ status: true, message: "Signup successful" });
 };
