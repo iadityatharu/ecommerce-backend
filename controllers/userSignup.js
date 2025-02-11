@@ -5,9 +5,6 @@ import bcrypt from "bcryptjs";
 export const userSignup = async (req, res) => {
   const { email, password, name, role } = req.body;
   const existingUser = await User.findOne({ email });
-  if (existingUser) {
-    throw new expressError(409, true, "User already exists");
-  }
  
   const hashPassword = await bcrypt.hash(password, 10);
   if (!hashPassword) {
