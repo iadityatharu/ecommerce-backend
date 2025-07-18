@@ -1,0 +1,11 @@
+import express from "express";
+const router = express.Router();
+import { auth } from "../middleware/auth.js";
+import { userSignup } from "../controllers/userSignup.js";
+import { userSignin } from "../controllers/userSignin.js";
+import { wrapAsync } from "../utils/wrapAsync.js";
+import { userDetail } from "../controllers/userDetail.js";
+router.post("/signup", wrapAsync(userSignup));
+router.post("/signin", wrapAsync(userSignin));
+router.get("/user-detail", auth, wrapAsync(userDetail));
+export default router;
